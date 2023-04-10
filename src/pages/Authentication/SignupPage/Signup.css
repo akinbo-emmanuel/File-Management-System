@@ -1,0 +1,17 @@
+.cascading-right {
+    margin-right: -50px;
+  }
+  
+@media (max-width: 900px) {
+    .cascading-right {
+      margin-right: 0;
+    }
+}
+
+.text-primary{
+    color: #fcc729 !important;
+}
+
+.button{
+    background-color: #fcc729 !important;
+}  

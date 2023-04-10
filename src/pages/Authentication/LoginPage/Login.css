@@ -3,6 +3,10 @@
   border-bottom-left-radius: 0.5rem;
 }
 
+.button{
+  background-color: #fcc729 !important;
+}
+
 @media (max-width: 550px) {
   .rounded-tr-lg-0 {
     border-top-right-radius: 0.5rem;

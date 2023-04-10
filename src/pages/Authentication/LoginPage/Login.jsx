@@ -30,15 +30,15 @@ function Login() {
 
             <MDBCardBody>
 
-              <MDBInput wrapperClass='mb-4' label='Email address' id='form1' type='email'/>
-              <MDBInput wrapperClass='mb-4' label='Password' id='form2' type='password'/>
+              <MDBInput wrapperClass='mb-4 field' label='Email address' id='form1' type='email'/>
+              <MDBInput wrapperClass='mb-4 field' label='Password' id='form2' type='password'/>
 
               <div className="d-flex justify-content-between mx-4 mb-4">
                 <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember me' />
                 <a href="!#">Forgot password?</a>
               </div>
 
-              <MDBBtn className="mb-4 w-100">Sign in</MDBBtn>
+              <MDBBtn className="mb-4 w-100 button">Sign in</MDBBtn>
 
               <div className="d-flex flex-row align-items-center justify-content-center pb-4 mb-4">
                 <p className="mb-0">Don't have an account?</p>
