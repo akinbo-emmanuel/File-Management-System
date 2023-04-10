@@ -29,10 +29,9 @@ function Signup() {
           </h1>
 
           <p className='px-3' style={{color: '#e6e6e6'}}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Eveniet, itaque accusantium odio, soluta, corrupti aliquam
-            quibusdam tempora at cupiditate quis eum maiores libero
-            veritatis? Dicta facilis sint aliquid ipsum atque?
+            Organize your files like never before with our intuitive file manager. <br />
+            Say goodbye to cluttered folders and hello to effortless file management. <br />
+            Streamline your workflow and boost productivity with just a few clicks.
           </p>
 
         </MDBCol>
