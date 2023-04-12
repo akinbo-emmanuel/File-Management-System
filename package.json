@@ -4,6 +4,8 @@
   "description": "template for mdb-react-ui-kit",
   "private": true,
   "dependencies": {
+    "@auth0/auth0-react": "^2.0.1",
+    "firebase": "^9.19.1",
     "history": "^5.3.0",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
@@ -13,6 +15,7 @@
     "react-router-dom": "^6.10.0",
     "react-scripts": "5.0.1",
     "sort-by": "^1.2.0",
+    "sweetalert": "^2.1.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
