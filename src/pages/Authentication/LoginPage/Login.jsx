@@ -19,15 +19,29 @@ import swal from 'sweetalert';
 import './Login.css';
 
 const Login = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();
+  
 
   const signIn = async (e) => {
     e.preventDefault();
     
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
+
+      let getRandomString = (length) => {
+        var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var result = '';
+        for ( var i = 0; i < length; i++ ) {
+            result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
+        }
+        return result;
+      }
+      let val = getRandomString(20);
+
+      window.localStorage.setItem('user', JSON.stringify(val));
+
       navigate('/dashboard'); // Redirect to dashboard after successful login
       swal("SUCCESS!", "Succesfully Logged In!", "success");
     } catch (error) {
@@ -40,6 +54,11 @@ const Login = () => {
         swal("ERROR!", `${errorMessage}`, "error");
       }
     }
+  }
+
+  let key = localStorage.key(0);
+  if ( key ) {
+    navigate('/dashboard');
   }
 
   return (

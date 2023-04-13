@@ -1,5 +1,6 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import { auth } from '../../../firebase';
 import {
   MDBBtn,
@@ -18,23 +19,40 @@ from 'mdb-react-ui-kit';
 import './Signup.css';
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const signUp = (e) => {
+  const signUp = async (e) => {
     e.preventDefault();
-    createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // // Signed in 
-      // const user = userCredential.user;
-      // // ...
-      console.log(userCredential);
-    })
-    .catch((error) => {
-      // const errorCode = error.code;
-      // const errorMessage = error.message;
-      console.log(error);
-  });
+    
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+
+      let getRandomString = (length) => {
+        var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var result = '';
+        for ( var i = 0; i < length; i++ ) {
+            result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
+        }
+        return result;
+      }
+      let val = getRandomString(20);
+
+      window.localStorage.setItem('user', JSON.stringify(val));
+
+      navigate('/dashboard'); // Redirect to dashboard after successful login
+      swal("SUCCESS!", "Succesfully Signed Up!", "success");
+    } catch (error) {
+      const errorMessage = error.message;
+
+      if (error.code && error.code.indexOf("auth/") === 0) {
+        const errorCode = error.code.split("auth/")[1];
+        swal("ERROR!", `${errorCode}`, "error");
+      } else {
+        swal("ERROR!", `${errorMessage}`, "error");
+      }
+    }
   }
 
   return (
@@ -49,7 +67,7 @@ const Signup = () => {
             <span className="text-primary">for your business</span>
           </h1>
 
-          <p className='px-3' style={{color: '#e6e6e6'}}>
+          <p className='px-3' style={{color: '#ffffff'}}>
             Organize your files like never before with our intuitive file manager. <br />
             Say goodbye to cluttered folders and hello to effortless file management. <br />
             Streamline your workflow and boost productivity with just a few clicks.
