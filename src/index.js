@@ -1,56 +1,19 @@
 import React from 'react';
-import { createRoot } from "react-dom/client";
-import './index.css';
-import 'mdb-react-ui-kit/dist/css/mdb.min.css';
-
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-
-import Login from './pages/Authentication/LoginPage/Login';
-import Signup from './pages/Authentication/SignupPage/Signup';
-import Profile from './pages/ProfilePage/Profile';
-import Dashboard from './pages/DashboardPage/Dashboard';
-// import ErrorPage from "./error-page";
-
+import ReactDOM from 'react-dom/client';
 import App from './App';
+import './index.css';
 
-import reportWebVitals from './reportWebVitals';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.min.js";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Login />,
-    // errorElement: <ErrorPage />,
-  },
-  {
-    path: "dashboard",
-    element: <Dashboard />,
-    // errorElement: <ErrorPage />,
-  },
-  {
-    path: "signup",
-    element: <Signup />,
-    // errorElement: <ErrorPage />,
-  },
-  {
-    path: "profile",
-    element: <Profile />,
-    // errorElement: <ErrorPage />,
-  }
-]);
+import { Provider } from 'react-redux';
+import store from './redux/store';
+import { BrowserRouter } from 'react-router-dom';
 
-const container = document.getElementById("root");
-const root = createRoot(container);
-
-root.render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>,
+)
