@@ -1,12 +1,46 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import { auth } from '../../config/firebase';
+import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+
+import swal from 'sweetalert';
 
 const LoginForm = () => {
+    const navigate = useNavigate();
+    const [authUser, setAuthUser] = useState(null);
+
+    useEffect(() => {
+        const listen = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                navigate('/dashboard');
+            } else {
+                setAuthUser(null);
+            }
+        })
+    }, []);
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const signIn = async (e) => {
         e.preventDefault();
-        
+
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                swal("SUCCESS!", "Succesfully Logged In!", "success");
+                navigate('/dashboard');
+            }) 
+            .catch((error) => {
+                const errorMessage = error.message;
+            
+                if (error.code && error.code.indexOf("auth/") === 0) {
+                    const errorCode = error.code.split("auth/")[1];
+                    swal("ERROR!", `${errorCode}`, "error");
+                } else {
+                    swal("ERROR!", `${errorMessage}`, "error");
+                }
+            });
     }
 
   return (

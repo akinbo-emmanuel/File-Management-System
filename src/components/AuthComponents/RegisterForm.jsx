@@ -1,6 +1,23 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import { auth } from '../../config/firebase';
+import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+
 
 function RegisterForm() {
+    const navigate = useNavigate();
+    const [authUser, setAuthUser] = useState(null);
+
+    useEffect(() => {
+        const listen = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                navigate('/dashboard');
+            } else {
+                setAuthUser(null);
+            }
+        })
+    }, []);
+
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -9,6 +26,17 @@ function RegisterForm() {
     const signIn = async (e) => {
         e.preventDefault();
         
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                swal("SUCCESS!", "Account successfully created!", "success");
+                navigate('/dashboard');
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(error);
+            });
     }
     return (
         <form onSubmit={signIn} autoComplete="off">
