@@ -1,24 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { auth } from '../../config/firebase';
-import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 import swal from 'sweetalert';
 
 const LoginForm = () => {
     const navigate = useNavigate();
-    const [authUser, setAuthUser] = useState(null);
-
-    useEffect(() => {
-        const listen = onAuthStateChanged(auth, (user) => {
-            if (user) {
-                navigate('/dashboard');
-            } else {
-                setAuthUser(null);
-            }
-        })
-    }, []);
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 

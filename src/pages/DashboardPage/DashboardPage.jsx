@@ -1,12 +1,27 @@
-import React from 'react';
-import AuthDetails from '../../config/AuthDetails';
+import { onAuthStateChanged } from 'firebase/auth';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Navbar from '../../components/DashboardComponents/NavBar/Navbar';
+import { auth } from '../../config/firebase';
 
 function DashboardPage() {
+  const navigate = useNavigate();
+  const [authUser, setAuthUser] = useState(null);
+
+  useEffect(() => {
+      const listen = onAuthStateChanged(auth, (user) => {
+          if (user) {
+            setAuthUser(user);
+          } else {
+            navigate('/');
+          }
+      })
+  }, []);
+
   return (
-    <div>
-      <h2>Welcome to the Dashboard</h2>
-      <AuthDetails />
-    </div>
+    <>
+    <Navbar />
+    </>
   )
 }
 
