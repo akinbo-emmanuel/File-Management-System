@@ -40,33 +40,26 @@ const Navbar = () => {
         });
   }
 
-  // signOut(auth).then(() => {
-  //   // Sign-out successful.
-  // }).catch((error) => {
-  //   // An error happened.
-  // });
-
   return (
-    <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
-        <a href="/" className='navbar-brand ms-5'>File Manager</a>
+    <nav className='navbar navbar-expand-lg navbar-light bg-white shadow-sm'>
+      <Link to={`/`} className="navbar-brand ms-5">File Manager</Link>
 
-        {authUser ?  
-          <ul className="navbar-nav ms-auto me-5">
-              <li className="nav-item mx-2">
-                  {/* <Link to={`login`} className="btn btn-primary btn-sm">Log Out</Link> */}
-                  <button type="button" class="btn btn-danger btn-sm" onClick={userSignOut}>Log Out</button>
-              </li>
-          </ul> 
-          : 
-          <ul className="navbar-nav ms-auto me-5">
+      {authUser ?  
+        <ul className="navbar-nav ms-auto me-5">
             <li className="nav-item mx-2">
-                <Link to={`login`} className="btn btn-primary btn-sm">Log In</Link>
+                <button type="button" class="btn btn-danger btn-sm" onClick={userSignOut}>Log Out</button>
             </li>
-            <li className="nav-item">
-                <Link to={`register`} className="btn btn-success btn-sm">Register</Link>
-            </li>
-          </ul> 
-        }
+        </ul> 
+        : 
+        <ul className="navbar-nav ms-auto me-5">
+          {/* <li className="nav-item mx-2">
+              <Link to={`login`} className="btn btn-primary btn-sm">Log In</Link>
+          </li>
+          <li className="nav-item">
+              <Link to={`register`} className="btn btn-success btn-sm">Register</Link>
+          </li> */}
+        </ul> 
+      }
     </nav>
   )
 }
