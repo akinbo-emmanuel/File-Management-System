@@ -25,7 +25,7 @@ const Register = () => {
             <div className="col-md-5 mx-auto md-5">
                 <RegisterForm />
                 <p className="text-end my-2">
-                    Already a member? <Link to={`/login`}> Login</Link>
+                    Already a member? <Link to={`/`}> Login</Link>
                 </p>
             </div>
         </div>

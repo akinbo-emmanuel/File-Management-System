@@ -9,7 +9,7 @@ function RegisterForm() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [passwordConfirmation, setPasswordConfirmation] = useState('');
+    // const [passwordConfirmation, setPasswordConfirmation] = useState('');
 
     const signIn = async (e) => {
         e.preventDefault();
@@ -63,7 +63,7 @@ function RegisterForm() {
                     required
                 />
             </div>
-            <div className="mb-3">
+            {/* <div className="mb-3">
                 <input 
                     type="password" 
                     name="password" 
@@ -73,7 +73,7 @@ function RegisterForm() {
                     onChange={(e) => setPasswordConfirmation(e.target.value)}
                     required
                 />
-            </div>
+            </div> */}
             <button type="submit" className="btn btn-primary my-2 form-control">Register</button>
         </form>
     )
