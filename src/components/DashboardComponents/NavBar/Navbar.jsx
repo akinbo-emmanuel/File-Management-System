@@ -47,7 +47,7 @@ const Navbar = () => {
       {authUser ?  
         <ul className="navbar-nav ms-auto me-5">
             <li className="nav-item mx-2">
-                <button type="button" class="btn btn-danger btn-sm" onClick={userSignOut}>Log Out</button>
+                <button type="button" className="btn btn-danger btn-sm" onClick={userSignOut}>Log Out</button>
             </li>
         </ul> 
         : 
