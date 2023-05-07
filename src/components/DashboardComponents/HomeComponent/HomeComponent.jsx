@@ -1,3 +1,4 @@
+import ShowFolders from "../ShowFolders/ShowFolders";
 import ShowItems from "../ShowItems/ShowItems";
 
 const HomeComponent = () => {
@@ -6,7 +7,7 @@ const HomeComponent = () => {
 
   return (
     <div className="col-md-12 w-100">
-      <ShowItems title={"Created Folders"} items={folders} />
+      <ShowFolders title={"Created Folders"} items={folders} />
       <ShowItems title={"Uploaded Files"} items={files} />
     </div>
   )
