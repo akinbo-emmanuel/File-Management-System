@@ -6,10 +6,14 @@ import { useState } from 'react';
 import { Button } from 'react-bootstrap';
 
 const SubBar = () => {
-  const [show, setShow] = useState(false);
+  const [showUpload, setShowUpload] = useState(false);
+  const [showFolder, setShowFolder] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleCloseUpload = () => setShowUpload(false);
+  const handleShowUpload = () => setShowUpload(true);
+
+  const handleCloseFolder = () => setShowFolder(false);
+  const handleShowFolder = () => setShowFolder(true);
 
   return (
     <>
@@ -18,17 +22,23 @@ const SubBar = () => {
 
           <ul className="navbar-nav ms-auto">
               <li className="navbar-item mx-2">
-                  <button className="btn btn-outline-dark" onClick={handleShow}>
+                  <button className="btn btn-outline-dark" onClick={handleShowUpload}>
                       <FontAwesomeIcon icon={faFileUpload}/> &nbsp;
                       Upload File
+                  </button>
+              </li>
+              <li className="navbar-item mx-2">
+                  <button className="btn btn-outline-dark" onClick={handleShowFolder}>
+                      <FontAwesomeIcon icon={faFileUpload}/> &nbsp;
+                      Create Folder
                   </button>
               </li>
           </ul>
       </nav>
 
       <Modal
-        show={show}
-        onHide={handleClose}
+        show={showUpload}
+        onHide={handleCloseUpload}
         backdrop="static"
         keyboard={false}
       >
@@ -42,12 +52,37 @@ const SubBar = () => {
         </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" onClick={handleCloseUpload}>
             Close
           </Button>
           <Button variant="primary">Upload</Button>
         </Modal.Footer>
       </Modal>
+
+      <Modal
+        show={showFolder}
+        onHide={handleCloseFolder}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Create Folder</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        <div class="mb-3">
+          {/* <label for="formFile" class="form-label">Default file input example</label> */}
+          <input placeholder="Enter folder name..." type="text" id="formBasicFolderName" class="form-control" value="" />
+        </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseFolder}>
+            Close
+          </Button>
+          <Button variant="primary">Add Folder</Button>
+        </Modal.Footer>
+      </Modal>
+
+
     </>
   )
 }
